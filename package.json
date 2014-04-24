@@ -1,0 +1,12 @@
+{
+    "name": "calculator",
+    "version": "0.0.1",
+    "author": "Blake Haswell (http://blakehaswell.com/)",
+    "homepage": "https://github.com/blakehaswell/javascript-calculator",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/blakehaswell/javascript-calculator.git"
+    },
+    "license": "MIT",
+    "private": true
+}
