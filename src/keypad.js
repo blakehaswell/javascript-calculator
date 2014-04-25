@@ -26,6 +26,12 @@ module.exports = CollectionView.extend({
             { type: 'equals', value: '=' },
             { type: 'clear', value: 'C' }
         ]);
+    },
+
+    itemEvents: {
+        'keyPress': function (event, item) {
+            this.trigger('keyPress', item.model);
+        }
     }
 
 });

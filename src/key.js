@@ -10,6 +10,12 @@ module.exports = ItemView.extend({
 
     template: function (key) {
         return key.value;
+    },
+
+    events: {
+        'click': function () {
+            this.trigger('keyPress');
+        }
     }
 
 });
