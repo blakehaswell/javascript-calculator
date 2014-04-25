@@ -1,1 +1,3 @@
-global.alert('I am being executed!');
+var calculator = require('./calculator');
+
+calculator.start();

@@ -1,0 +1,7 @@
+{
+    "name": "calculator",
+    "private": true,
+    "dependencies": {
+        "backbone.marionette": "v1.8.3"
+    }
+}

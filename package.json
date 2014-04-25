@@ -11,6 +11,28 @@
     "private": true,
     "dependencies": {
         "browserify": "3.44.2",
+        "browserify-shim": "3.4.1",
         "jade": "1.3.1"
+    },
+    "browserify": {
+        "transform": [ "browserify-shim" ]
+    },
+    "browser": {
+        "underscore": "./bower_components/underscore/underscore.js",
+        "jquery": "./bower_components/jquery/dist/jquery.js",
+        "backbone": "./bower_components/backbone/backbone.js",
+        "backbone.marionette": "./bower_components/backbone.marionette/lib/backbone.marionette.js"
+    },
+    "browserify-shim": {
+        "underscore": "_",
+        "jquery": "$",
+        "backbone": {
+            "exports": "Backbone",
+            "depends": [ "underscore", "jquery" ]
+        },
+        "backbone.marionette": {
+            "exports": "Marionette",
+            "depends": [ "backbone" ]
+        }
     }
 }
