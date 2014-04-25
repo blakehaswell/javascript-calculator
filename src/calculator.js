@@ -2,6 +2,7 @@ var Application = require('backbone.marionette').Application;
 var Display = require('./display');
 var Keypad = require('./keypad');
 var isValidKey = require('./isValidKey');
+var calculateResult = require('./calculateResult');
 
 var calculator = module.exports = new Application();
 var display = new Display();
@@ -24,7 +25,7 @@ keypad.on('keyPress', function (key) {
             equation = '';
             break;
         case 'equals':
-            equation = getResult(equation);
+            equation = calculateResult(equation);
             break;
         default:
             equation += key.get('value');
@@ -32,8 +33,3 @@ keypad.on('keyPress', function (key) {
     }
     display.setText(equation);
 });
-
-function getResult(equation) {
-    equation = equation.replace(/\xD7/g, '*').replace(/\xF7/g, '/');
-    return eval(equation).toString();
-}
