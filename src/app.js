@@ -1,0 +1,1 @@
+global.alert('I am being executed!');
