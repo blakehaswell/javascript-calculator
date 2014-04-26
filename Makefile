@@ -16,4 +16,11 @@ $(OUTPUT_DIR)/app.js: $(SOURCE_DIR)/*.js $(SOURCE_DIR)/**/*.js
 $(OUTPUT_DIR)/app.css: $(SOURCE_DIR)/app.scss
 	$(COMPASS) $(SOURCE_DIR)/app.scss --sass-dir $(SOURCE_DIR) --css-dir $(OUTPUT_DIR)
 
+deps:
+	npm prune
+	npm install
+	bower prune
+	bower install
+	bundle install
+
 .PHONY: all
