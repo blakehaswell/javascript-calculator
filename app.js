@@ -15141,18 +15141,18 @@ return jQuery;
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],5:[function(require,module,exports){
-var calculator = require('./calculator');
+var calculator = require('./calculator/calculator');
 
 calculator.start();
-},{"./calculator":7}],6:[function(require,module,exports){
+},{"./calculator/calculator":7}],6:[function(require,module,exports){
 module.exports = function (equation) {
     equation = equation.replace(/×/g, '*').replace(/÷/g, '/');
     return eval(equation).toString();
 }
 },{}],7:[function(require,module,exports){
 var Application = require('backbone.marionette').Application;
-var Display = require('./display');
-var Keypad = require('./keypad');
+var Display = require('../display/display');
+var Keypad = require('../keypad/keypad');
 var isValidKey = require('./isValidKey');
 var calculateResult = require('./calculateResult');
 
@@ -15185,7 +15185,44 @@ keypad.on('keyPress', function (key) {
     }
     display.setText(equation);
 });
-},{"./calculateResult":6,"./display":8,"./isValidKey":9,"./keypad":11,"backbone.marionette":1}],8:[function(require,module,exports){
+},{"../display/display":9,"../keypad/keypad":11,"./calculateResult":6,"./isValidKey":8,"backbone.marionette":1}],8:[function(require,module,exports){
+module.exports = function (equation, key) {
+    var type = key.get('type');
+    var value = key.get('value');
+    if (type === 'clear' || (type === 'number' && value !== '.')) {
+        return true;
+    } else if (value === '.') {
+        if (isEquationEmpty(equation) ||
+                !isDecimalPlaceSinceLastOperator(equation)) {
+            return true;
+        }
+    } else if (value === '-') {
+        if (isEquationEmpty(equation) || equation.slice(-1) !== '-') {
+            return true;
+        }
+    } else if (type === 'operator' || type === 'equals') {
+        if (!isEquationEmpty(equation) && isLastCharNumber(equation)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function isEquationEmpty(equation) {
+    return equation === '';
+}
+
+function isLastCharNumber(equation) {
+    if (isEquationEmpty(equation)) return false;
+    return !!equation.slice(-1).match(/[0-9]/);
+}
+
+function isDecimalPlaceSinceLastOperator(equation) {
+    var numbers = equation.split(/[+|-|×|÷]/);
+    var lastNumber = numbers[numbers.length - 1];
+    return lastNumber.indexOf('.') !== -1;
+}
+},{}],9:[function(require,module,exports){
 var ItemView = require('backbone.marionette').ItemView;
 var Model = require('backbone').Model;
 
@@ -15223,44 +15260,7 @@ module.exports = ItemView.extend({
     }
 
 });
-},{"backbone":2,"backbone.marionette":1}],9:[function(require,module,exports){
-module.exports = function (equation, key) {
-    var type = key.get('type');
-    var value = key.get('value');
-    if (type === 'clear' || (type === 'number' && value !== '.')) {
-        return true;
-    } else if (value === '.') {
-        if (isEquationEmpty(equation) ||
-                !isDecimalPlaceSinceLastOperator(equation)) {
-            return true;
-        }
-    } else if (value === '-') {
-        if (isEquationEmpty(equation) || equation.slice(-1) !== '-') {
-            return true;
-        }
-    } else if (type === 'operator' || type === 'equals') {
-        if (!isEquationEmpty(equation) && isLastCharNumber(equation)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function isEquationEmpty(equation) {
-    return equation === '';
-}
-
-function isLastCharNumber(equation) {
-    if (isEquationEmpty(equation)) return false;
-    return !!equation.slice(-1).match(/[0-9]/);
-}
-
-function isDecimalPlaceSinceLastOperator(equation) {
-    var numbers = equation.split(/[+|-|×|÷]/);
-    var lastNumber = numbers[numbers.length - 1];
-    return lastNumber.indexOf('.') !== -1;
-}
-},{}],10:[function(require,module,exports){
+},{"backbone":2,"backbone.marionette":1}],10:[function(require,module,exports){
 var ItemView = require('backbone.marionette').ItemView;
 
 module.exports = ItemView.extend({
