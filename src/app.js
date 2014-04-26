@@ -1,3 +1,3 @@
-var calculator = require('./calculator');
+var calculator = require('./calculator/calculator');
 
 calculator.start();

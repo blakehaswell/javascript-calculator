@@ -1,6 +1,6 @@
 var Application = require('backbone.marionette').Application;
-var Display = require('./display');
-var Keypad = require('./keypad');
+var Display = require('../display/display');
+var Keypad = require('../keypad/keypad');
 var isValidKey = require('./isValidKey');
 var calculateResult = require('./calculateResult');
 
