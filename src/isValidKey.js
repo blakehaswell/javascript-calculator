@@ -30,7 +30,7 @@ function isLastCharNumber(equation) {
 }
 
 function isDecimalPlaceSinceLastOperator(equation) {
-    var numbers = equation.split(/[+|-|\xD7|\xF7]/);
+    var numbers = equation.split(/[+|-|×|÷]/);
     var lastNumber = numbers[numbers.length - 1];
     return lastNumber.indexOf('.') !== -1;
 }

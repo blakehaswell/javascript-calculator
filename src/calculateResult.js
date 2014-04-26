@@ -1,4 +1,4 @@
 module.exports = function (equation) {
-    equation = equation.replace(/\xD7/g, '*').replace(/\xF7/g, '/');
+    equation = equation.replace(/×/g, '*').replace(/÷/g, '/');
     return eval(equation).toString();
 }

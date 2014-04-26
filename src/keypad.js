@@ -21,11 +21,11 @@ module.exports = CollectionView.extend({
             { type: 'number', value: '1' },
             { type: 'number', value: '2' },
             { type: 'number', value: '3' },
-            { type: 'operator', value: '\xD7' },
+            { type: 'operator', value: '×' },
             { type: 'number', value: '0' },
             { type: 'number', value: '.' },
             { type: 'equals', value: '=' },
-            { type: 'operator', value: '\xF7' },
+            { type: 'operator', value: '÷' },
             { type: 'clear', value: 'C' }
         ]);
     },
