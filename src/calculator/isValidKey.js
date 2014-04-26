@@ -18,7 +18,7 @@ module.exports = function (equation, key) {
         }
     }
     return false;
-}
+};
 
 function isEquationEmpty(equation) {
     return equation === '';
