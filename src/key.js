@@ -4,6 +4,10 @@ module.exports = ItemView.extend({
 
     tagName: 'button',
 
+    className: function () {
+        return 'key key--' + this.model.get('type');
+    },
+
     attributes: {
         type: 'button'
     },
@@ -14,6 +18,7 @@ module.exports = ItemView.extend({
 
     events: {
         'click': function () {
+            this.$el.blur();
             this.trigger('keyPress');
         }
     }

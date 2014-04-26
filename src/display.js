@@ -5,6 +5,8 @@ module.exports = ItemView.extend({
 
     tagName: 'input',
 
+    className: 'display',
+
     attributes: {
         type: 'text',
         readonly: 'readonly'
