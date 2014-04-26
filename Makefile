@@ -23,4 +23,4 @@ deps:
 	bower install
 	bundle install
 
-.PHONY: all
+.PHONY: all deps
